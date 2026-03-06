@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Simple Blog</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Georgia, serif;
+}
+
+/* Background */
+body{
+    background:#e6e6e6;
+}
+
+/* ===== NAVBAR ===== */
+nav{
+    background:#333;
+    padding:15px 0;
+}
+
+nav ul{
+    list-style:none;
+    text-align:center;
+}
+
+nav ul li{
+    display:inline-block;
+    margin:0 25px;
+}
+
+nav ul li a{
+    text-decoration:none;
+    color:white;
+    font-size:18px;
+    transition:0.3s;
+}
+
+nav ul li a:hover{
+    color:#ffd369;
+}
+
+/* ===== CONTENT ===== */
+.container{
+    width:80%;
+    margin:40px auto;
+    background:white;
+    padding:40px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.1);
+}
+
+article{
+    margin-bottom:40px;
+}
+
+h2{
+    margin-bottom:10px;
+}
+
+.meta{
+    color:gray;
+    font-style:italic;
+    margin-bottom:15px;
+}
+
+/* ===== FOOTER ===== */
+footer{
+    background:#333;
+    color:white;
+    text-align:center;
+    padding:12px;
+}
+</style>
+
+</head>
+<body>
+
+<nav>
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Tutorials</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Newsletter</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+
+    <article>
+        <h2>Just Another Day</h2>
+        <p class="meta">Written by Christina on January 11th</p>
+        <p>This is my second blog entry, and I just wanted to check in on you.</p>
+    </article>
+
+    <article>
+        <h2>My First Blog Entry</h2>
+        <p class="meta">Written by Christina on January 10th</p>
+        <p>I’m so happy to write my first blog entry – yay!</p>
+    </article>
+
+</div>
+
+<footer>
+    © 2026 Your Name
+</footer>
+
+</body>
+</html>
