@@ -1,17 +1,17 @@
-/* Reset cơ bản để xóa khoảng cách mặc định */
+
 * {
     box-sizing: border-box;
 }
 
 body {
-    background-color: #e5dca5; /* Màu nền vàng nhạt giống ảnh */
+    background-color: #e5dca5; 
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
     color: #000;
 }
 
-/* --- PHẦN HEADER --- */
+
 header {
     text-align: center;
     padding-top: 20px;
@@ -30,32 +30,32 @@ nav a {
 }
 
 nav a:first-child {
-    font-weight: bold; /* In đậm mục Home */
+    font-weight: bold;
 }
 
 h1 {
-    font-family: "Comic Sans MS", "Chalkboard SE", cursive; /* Font chữ viết tay */
+    font-family: "Comic Sans MS", "Chalkboard SE", cursive;
     font-size: 38px;
     font-weight: normal;
     margin: 0 0 20px 0;
 }
 
 header img {
-    width: 65%; /* Thu nhỏ ảnh kim tự tháp ở giữa */
+    width: 65%;
     max-width: 800px;
     height: auto;
     display: block;
     margin: 0 auto;
 }
 
-/* --- PHẦN NỘI DUNG CHÍNH (3 CỘT) --- */
+
 .container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Chia làm 3 cột bằng nhau */
-    gap: 25px; /* Khoảng cách giữa các cột */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 25px; 
     width: 90%;
     max-width: 1100px;
-    margin: 0 auto; /* Căn giữa toàn bộ cụm bài viết */
+    margin: 0 auto; 
 }
 
 .article h2 {
@@ -70,25 +70,24 @@ header img {
 }
 
 .article .meta a {
-    color: #0000ee; /* Màu xanh nước biển cho link */
+    color: #0000ee;
     text-decoration: none;
 }
 
 .article img {
     width: 100%;
     height: 160px;
-    object-fit: cover; /* Đảm bảo ảnh không bị méo */
+    object-fit: cover; 
     margin-bottom: 5px;
 }
 
 .article p:not(.meta) {
     font-size: 11px;
     line-height: 1.4;
-    text-align: justify; /* Căn đều 2 bên */
+    text-align: justify; 
     margin-bottom: 15px;
 }
 
-/* Hiệu ứng chữ to đầu dòng */
 .dropcap {
     float: left;
     font-size: 42px;
@@ -98,14 +97,13 @@ header img {
     font-family: "Times New Roman", Times, serif;
 }
 
-/* --- PHẦN NÚT BẤM --- */
 .buttons {
     display: flex;
     gap: 5px;
 }
 
 .buttons button {
-    background-color: #8a633a; /* Màu nâu đất */
+    background-color: #8a633a; 
     color: white;
     border: none;
     padding: 6px 10px;
@@ -113,8 +111,6 @@ header img {
     font-weight: bold;
     cursor: pointer;
 }
-
-/* --- PHẦN FOOTER --- */
 footer {
     text-align: center;
     font-size: 10px;
