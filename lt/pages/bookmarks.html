@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài Viết Đã Lưu - The Newsroom Prime</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .page-hero { text-align:center; margin-bottom:var(--sp-16); }
+        .page-hero h1 { font-family:var(--font-headline); font-size:var(--text-5xl); color:var(--primary); margin-bottom:var(--sp-4); }
+        @media(min-width:768px) { .page-hero h1 { font-size:var(--text-6xl); } }
+        .page-hero p { font-size:var(--text-lg); color:var(--on-surface-variant); max-width:42rem; margin:0 auto; }
+        .saved-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--sp-8); }
+        @media(max-width:1024px) { .saved-grid { grid-template-columns:repeat(2,1fr); } }
+        @media(max-width:640px) { .saved-grid { grid-template-columns:1fr; } }
+        .saved-card { background:var(--surface-container-lowest); border-radius:var(--radius-xl); overflow:hidden; border:1px solid var(--border-light); transition:all var(--t-normal); position:relative; }
+        .saved-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-md); }
+        .saved-card img { width:100%; height:12rem; object-fit:cover; transition:transform 0.6s; }
+        .saved-card:hover img { transform:scale(1.05); }
+        .saved-card .body { padding:var(--sp-6); }
+        .saved-card .cat { font-family:var(--font-label); font-size:10px; text-transform:uppercase; letter-spacing:0.15em; color:var(--secondary); font-weight:600; margin-bottom:var(--sp-2); }
+        .saved-card h3 { font-family:var(--font-headline); font-size:var(--text-xl); color:var(--primary); margin-bottom:var(--sp-2); transition:color var(--t-fast); }
+        .saved-card:hover h3 { color:var(--secondary); }
+        .saved-card p { font-size:var(--text-sm); color:var(--on-surface-variant); line-height:1.5; margin-bottom:var(--sp-3); }
+        .saved-card .meta { font-family:var(--font-label); font-size:var(--text-xs); color:var(--outline); display:flex; gap:var(--sp-2); }
+        .remove-btn { position:absolute; top:var(--sp-3); right:var(--sp-3); width:32px; height:32px; border-radius:50%; background:rgba(0,0,0,0.5); backdrop-filter:blur(10px); color:#fff; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all var(--t-fast); opacity:0; }
+        .saved-card:hover .remove-btn { opacity:1; }
+        .remove-btn:hover { background:var(--secondary); transform:scale(1.1); }
+        .empty-state { text-align:center; padding:var(--sp-16); background:var(--surface-container-low); border-radius:var(--radius-xl); border:1px dashed var(--border-light); }
+        .empty-state .material-symbols-outlined { font-size:3rem; color:var(--outline); margin-bottom:var(--sp-4); }
+        .empty-state h3 { font-family:var(--font-headline); font-size:var(--text-2xl); color:var(--primary); margin-bottom:var(--sp-3); }
+        .empty-state p { color:var(--on-surface-variant); max-width:28rem; margin:0 auto var(--sp-6); }
+    </style>
+</head>
+<body>
+    <header class="site-header" role="banner"><div class="header-inner"><div class="logo"><a href="../index.html">The Newsroom Prime</a></div><nav><ul class="nav-links"><li><a href="../index.html">Trang Chủ</a></li><li><a href="category.html">Khám Phá</a></li><li><a href="about.html">Tòa Soạn</a></li><li><a href="contact.html">Liên Hệ</a></li></ul></nav><div class="header-actions"><button class="icon-btn" id="btn-theme-toggle" aria-label="Chuyển giao diện"><span class="material-symbols-outlined">dark_mode</span></button><a href="auth.html" class="btn btn-primary">Đăng Nhập / Đăng Ký</a></div></div></header>
+
+    <main role="main">
+        <div class="container-narrow fade-in">
+            <div class="page-hero">
+                <h1>Bài Viết Đã Lưu</h1>
+                <p>Bộ sưu tập cá nhân các bài viết bạn đã đánh dấu để đọc sau.</p>
+            </div>
+            <div id="bookmarks-container"></div>
+        </div>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo"><a href="../index.html">The Newsroom Prime</a></div>
+                <p>Góc Nhìn Độc Lập Giữa Dòng Chảy Số.</p>
+            </div>
+            <div class="footer-col">
+                <h5>Tổ Chức</h5>
+                <div class="footer-links"><a href="about.html">Giới Thiệu</a><a href="category.html">Tất Cả Bài Viết</a><a href="#">Tuyển Dụng</a></div>
+            </div>
+            <div class="footer-col">
+                <h5>Pháp Lý</h5>
+                <div class="footer-links"><a href="#">Chính Sách Bảo Mật</a><a href="#">Điều Khoản Dịch Vụ</a></div>
+            </div>
+            <div class="footer-col">
+                <h5>Kết Nối</h5>
+                <div class="footer-links"><a href="#">Twitter</a><a href="#">LinkedIn</a><a href="contact.html">Liên Hệ Tòa Soạn</a></div>
+            </div>
+        </div>
+        <div class="footer-bottom"><p>© 2026 The Newsroom Prime. Kỷ Nguyên Báo Chí Nguyên Bản.</p></div>
+    </footer>
+
+    <script src="../js/data/articles.js"></script>
+    <script src="../js/data/auth.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const bookmarkIds = Auth.getBookmarks();
+        const container = document.getElementById("bookmarks-container");
+
+        if (bookmarkIds.length === 0) {
+            container.innerHTML = `<div class="empty-state"><span class="material-symbols-outlined">bookmarks</span><h3>Chưa Có Bài Viết Nào</h3><p>Bạn chưa lưu bài viết nào. Hãy đọc các bài viết và nhấn nút "Lưu Bài" để thêm vào đây.</p><a href="../index.html" class="btn btn-primary">Khám Phá Tin Tức</a></div>`;
+            return;
+        }
+
+        const articles = bookmarkIds.map(id => getArticleById(id)).filter(Boolean);
+        container.innerHTML = `<div class="saved-grid">${articles.map((a, i) => `
+            <div class="saved-card reveal" style="animation-delay:${i*0.08}s;">
+                <button class="remove-btn" onclick="removeBookmark(${a.id}, this)" aria-label="Bỏ lưu"><span class="material-symbols-outlined" style="font-size:18px;">close</span></button>
+                <a href="article.html?id=${a.id}" style="text-decoration:none; color:inherit;">
+                    <img src="${a.image}" alt="${a.title}">
+                    <div class="body"><div class="cat">${a.categoryLabel}</div><h3>${a.title}</h3><p>${a.excerpt}</p><div class="meta"><span>${a.author}</span><span>•</span><span>${a.readTime} phút đọc</span></div></div>
+                </a>
+            </div>`).join("")}</div>`;
+        initScrollAnimations();
+    });
+
+    function removeBookmark(id, btn) {
+        Auth.toggleBookmark(id);
+        const card = btn.closest('.saved-card');
+        card.style.transform = 'scale(0.9)'; card.style.opacity = '0';
+        setTimeout(() => { card.remove(); Toast.show("Đã bỏ lưu bài viết.", "info"); }, 300);
+    }
+    </script>
+</body>
+</html>

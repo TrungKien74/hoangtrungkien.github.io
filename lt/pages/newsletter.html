@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bản Tin - The Newsroom Prime</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .nl-hero { text-align:center; margin-bottom:var(--sp-16); }
+        .nl-hero h1 { font-family:var(--font-headline); font-size:var(--text-5xl); color:var(--primary); margin-bottom:var(--sp-4); }
+        @media(min-width:768px) { .nl-hero h1 { font-size:var(--text-6xl); } }
+        .nl-hero p { font-size:var(--text-xl); color:var(--on-surface-variant); max-width:36rem; margin:0 auto; line-height:1.7; }
+        .nl-form-card { max-width:32rem; margin:0 auto var(--sp-16); background:var(--surface-container-lowest); padding:var(--sp-10); border-radius:var(--radius-xl); box-shadow:var(--shadow-tonal); text-align:center; }
+        .nl-form-card h3 { font-family:var(--font-headline); font-size:var(--text-2xl); color:var(--primary); margin-bottom:var(--sp-2); }
+        .nl-form-card p { font-size:var(--text-sm); color:var(--on-surface-variant); margin-bottom:var(--sp-6); }
+        .nl-form { display:flex; gap:var(--sp-3); }
+        .nl-form input { flex:1; padding:var(--sp-3) var(--sp-4); border:1px solid var(--border-light); border-radius:var(--radius); font-family:var(--font-body); font-size:var(--text-sm); color:var(--on-surface); background:var(--surface); transition:border-color var(--t-fast); }
+        .nl-form input:focus { border-color:var(--primary); outline:none; }
+        .perks-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--sp-8); max-width:56rem; margin:0 auto var(--sp-16); }
+        @media(max-width:768px) { .perks-grid { grid-template-columns:1fr; } }
+        .perk-card { padding:var(--sp-8); border-radius:var(--radius-xl); background:var(--surface-container-lowest); border:1px solid var(--border-light); text-align:center; transition:all var(--t-normal); }
+        .perk-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-md); }
+        .perk-card .icon { font-size:2.5rem; color:var(--primary); margin-bottom:var(--sp-4); }
+        .perk-card h4 { font-family:var(--font-label); font-size:var(--text-sm); text-transform:uppercase; letter-spacing:0.1em; color:var(--primary); margin-bottom:var(--sp-2); }
+        .perk-card p { font-size:var(--text-sm); color:var(--on-surface-variant); margin:0; }
+        .sample-issue { max-width:48rem; margin:0 auto var(--sp-16); background:var(--surface-container-lowest); border-radius:var(--radius-xl); overflow:hidden; box-shadow:var(--shadow-tonal); }
+        .sample-header { background:var(--primary); padding:var(--sp-6); color:#fff; text-align:center; }
+        .sample-header h3 { font-family:var(--font-headline); font-size:var(--text-xl); margin:0; color:#fff; }
+        .sample-body { padding:var(--sp-8); }
+        .sample-article { display:flex; gap:var(--sp-4); padding:var(--sp-4) 0; border-bottom:1px solid var(--border-light); }
+        .sample-article:last-child { border-bottom:none; }
+        .sample-article .num { font-family:var(--font-headline); font-size:var(--text-2xl); color:var(--primary-fixed-dim); flex-shrink:0; }
+        .sample-article h5 { font-family:var(--font-headline); font-size:var(--text-base); color:var(--primary); margin-bottom:var(--sp-1); }
+        .sample-article p { font-size:var(--text-sm); color:var(--on-surface-variant); margin:0; }
+    </style>
+</head>
+<body>
+    <header class="site-header" role="banner"><div class="header-inner"><div class="logo"><a href="../index.html">The Newsroom Prime</a></div><nav><ul class="nav-links"><li><a href="../index.html">Trang Chủ</a></li><li><a href="category.html">Khám Phá</a></li><li><a href="about.html">Tòa Soạn</a></li><li><a href="contact.html">Liên Hệ</a></li></ul></nav><div class="header-actions"><button class="icon-btn" id="btn-theme-toggle" aria-label="Chuyển giao diện"><span class="material-symbols-outlined">dark_mode</span></button><a href="auth.html" class="btn btn-primary">Đăng Nhập / Đăng Ký</a></div></div></header>
+
+    <main role="main">
+        <div class="container-narrow fade-in">
+            <div class="nl-hero reveal"><h1>Bản Tin Hàng Ngày</h1><p>Mỗi sáng, nhận 5 bài viết chọn lọc bởi ban biên tập — không thuật toán, không spam, chỉ báo chí chất lượng.</p></div>
+
+            <div class="nl-form-card reveal-scale">
+                <h3>Nhận Bản Tin Miễn Phí</h3>
+                <p>Hơn 200,000 độc giả đã tin tưởng.</p>
+                <form class="nl-form" onsubmit="event.preventDefault(); Toast.show('🎉 Đăng ký bản tin thành công!', 'success'); this.reset();">
+                    <input type="email" placeholder="Email của bạn..." required>
+                    <button type="submit" class="btn btn-primary">Đăng Ký</button>
+                </form>
+            </div>
+
+            <div class="section-header reveal"><h2>Tại Sao Chọn Bản Tin?</h2><div class="line"></div></div>
+            <div class="perks-grid">
+                <div class="perk-card reveal"><span class="material-symbols-outlined icon">schedule</span><h4>5 Phút Mỗi Sáng</h4><p>Bản tin ngắn gọn, đủ để bạn cập nhật trước khi bắt đầu ngày làm việc.</p></div>
+                <div class="perk-card reveal"><span class="material-symbols-outlined icon">auto_awesome</span><h4>Chọn Lọc Bởi Con Người</h4><p>Không thuật toán. Ban biên tập chọn bài dựa trên chất lượng và tầm quan trọng.</p></div>
+                <div class="perk-card reveal"><span class="material-symbols-outlined icon">block</span><h4>Không Quảng Cáo</h4><p>Trải nghiệm đọc thuần khiết — không popup, không banner, không tracking.</p></div>
+            </div>
+
+            <div class="section-header reveal"><h2>Xem Trước Bản Tin</h2><div class="line"></div></div>
+            <div class="sample-issue reveal-scale">
+                <div class="sample-header"><h3>📰 Bản Tin Sáng — 23 Tháng 4, 2026</h3></div>
+                <div class="sample-body" id="sample-articles"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo"><a href="../index.html">The Newsroom Prime</a></div>
+                <p>Góc Nhìn Độc Lập Giữa Dòng Chảy Số.</p>
+            </div>
+            <div class="footer-col">
+                <h5>Tổ Chức</h5>
+                <div class="footer-links"><a href="about.html">Giới Thiệu</a><a href="category.html">Tất Cả Bài Viết</a><a href="#">Tuyển Dụng</a></div>
+            </div>
+            <div class="footer-col">
+                <h5>Pháp Lý</h5>
+                <div class="footer-links"><a href="#">Chính Sách Bảo Mật</a><a href="#">Điều Khoản Dịch Vụ</a></div>
+            </div>
+            <div class="footer-col">
+                <h5>Kết Nối</h5>
+                <div class="footer-links"><a href="#">Twitter</a><a href="#">LinkedIn</a><a href="contact.html">Liên Hệ Tòa Soạn</a></div>
+            </div>
+        </div>
+        <div class="footer-bottom"><p>© 2026 The Newsroom Prime. Kỷ Nguyên Báo Chí Nguyên Bản.</p></div>
+    </footer>
+
+    <script src="../js/data/articles.js"></script>
+    <script src="../js/data/auth.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const sample = document.getElementById("sample-articles");
+        const latest = getLatestArticles(5);
+        sample.innerHTML = latest.map((a, i) => `
+            <div class="sample-article"><span class="num">${i+1}</span><div><h5>${a.title}</h5><p>${a.excerpt}</p></div></div>`).join("");
+    });
+    </script>
+</body>
+</html>

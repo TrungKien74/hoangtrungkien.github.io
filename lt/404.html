@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 — Trang Không Tồn Tại - The Newsroom Prime</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body { min-height:100vh; display:flex; flex-direction:column; }
+        .error-page { flex:1; display:flex; align-items:center; justify-content:center; padding:var(--sp-8); padding-top:var(--header-height); }
+        .error-inner { text-align:center; max-width:36rem; }
+        .error-code { font-family:var(--font-headline); font-size:clamp(6rem,15vw,12rem); font-weight:200; color:var(--primary-fixed-dim); line-height:1; letter-spacing:-0.05em; }
+        .error-inner h1 { font-family:var(--font-headline); font-size:var(--text-3xl); color:var(--primary); margin-bottom:var(--sp-4); }
+        .error-inner p { color:var(--on-surface-variant); line-height:1.7; margin-bottom:var(--sp-8); }
+        .error-actions { display:flex; gap:var(--sp-4); justify-content:center; flex-wrap:wrap; }
+    </style>
+</head>
+<body>
+    <header class="site-header" role="banner"><div class="header-inner"><div class="logo"><a href="index.html">The Newsroom Prime</a></div><div class="header-actions"><button class="icon-btn" id="btn-theme-toggle" aria-label="Chuyển giao diện"><span class="material-symbols-outlined">dark_mode</span></button></div></div></header>
+
+    <div class="error-page">
+        <div class="error-inner fade-in">
+            <div class="error-code">404</div>
+            <h1>Trang Không Tồn Tại</h1>
+            <p>Xin lỗi, trang bạn đang tìm kiếm không tồn tại hoặc đã được di chuyển. Hãy trở về trang chủ để tiếp tục khám phá tin tức.</p>
+            <div class="error-actions">
+                <a href="index.html" class="btn btn-primary"><span class="material-symbols-outlined" style="font-size:18px;">home</span> Về Trang Chủ</a>
+                <a href="pages/search.html" class="btn btn-outline"><span class="material-symbols-outlined" style="font-size:18px;">search</span> Tìm Kiếm</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/data/auth.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

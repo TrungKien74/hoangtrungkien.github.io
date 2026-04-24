@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="The Newsroom Prime — Nền tảng báo chí số cao cấp với tin tức khách quan, chuyên sâu và thiết kế đỉnh cao.">
+    <title>The Newsroom Prime | Trang Chủ</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="site-header" role="banner">
+        <div class="header-inner">
+            <div class="logo"><a href="index.html">The Newsroom Prime</a></div>
+            <nav role="navigation" aria-label="Điều hướng chính">
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Trang Chủ</a></li>
+                    <li><a href="pages/category.html">Khám Phá</a></li>
+                    <li><a href="pages/about.html">Tòa Soạn</a></li>
+                    <li><a href="pages/contact.html">Liên Hệ</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="icon-btn" id="btn-search" aria-label="Tìm kiếm"><span
+                        class="material-symbols-outlined">search</span></button>
+                <button class="icon-btn" id="btn-theme-toggle" aria-label="Chuyển giao diện"><span
+                        class="material-symbols-outlined">dark_mode</span></button>
+                <a href="pages/auth.html" class="btn btn-primary">Đăng Nhập / Đăng Ký</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breaking News Ticker -->
+    <div class="breaking-bar" style="margin-top: calc(var(--header-height) + var(--sp-4));">
+        <span class="label">Nóng</span>
+        <div class="ticker">
+            <p>Thị trường toàn cầu phục hồi sau đợt tăng doanh thu công nghệ bất ngờ • Hiệp ước ngoại giao mới được ký
+                kết tại Geneva • Các nhà khoa học phát hiện hành tinh ngoài có tiềm năng sự sống • AI vượt mốc mới trong
+                sáng tạo nghệ thuật</p>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <main role="main">
+        <div class="container">
+            <div class="grid-12">
+                <!-- Left: Featured (9 col) -->
+                <div style="grid-column: span 9;">
+                    <!-- Hero (rendered via JS) -->
+                    <div id="hero-container" class="reveal"></div>
+
+                    <!-- Section: Tin Mới Nhất -->
+                    <div style="margin-top: var(--sp-16);">
+                        <div class="section-header reveal">
+                            <h2>Tin Mới Nhất</h2>
+                            <div class="line"></div>
+                        </div>
+                        <div id="latest-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:var(--sp-8);">
+                        </div>
+                    </div>
+
+                    <!-- Newsletter CTA -->
+                    <div class="reveal"
+                        style="margin-top: var(--sp-16); background: linear-gradient(135deg, var(--primary), var(--primary-container)); border-radius: var(--radius-xl); padding: var(--sp-10); position:relative; overflow:hidden;">
+                        <div
+                            style="position:relative; z-index:1; display:flex; align-items:center; gap:var(--sp-8); flex-wrap:wrap;">
+                            <div style="flex:1; min-width:280px;">
+                                <h3
+                                    style="font-family:var(--font-label); font-size:var(--text-xs); text-transform:uppercase; letter-spacing:0.15em; color:var(--primary-fixed-dim); margin-bottom:var(--sp-2);">
+                                    Bản Tin Hàng Ngày</h3>
+                                <h4
+                                    style="font-family:var(--font-headline); font-size:var(--text-3xl); color:#fff; margin-bottom:var(--sp-3);">
+                                    Không Bao Giờ Bỏ Lỡ Một Bài Viết</h4>
+                                <p style="color:rgba(255,255,255,0.8); font-size:var(--text-sm); margin:0;">Nhận tin tức
+                                    chọn lọc mỗi sáng, không spam, không thuật toán.</p>
+                            </div>
+                            <form id="newsletter-form" style="display:flex; gap:var(--sp-3); flex-shrink:0;"
+                                onsubmit="event.preventDefault(); Toast.show('Đăng ký bản tin thành công!', 'success'); this.reset();">
+                                <input type="email" placeholder="Email của bạn..." required
+                                    style="padding:var(--sp-3) var(--sp-6); border-radius:var(--radius); background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.2); color:#fff; font-family:var(--font-body); font-size:var(--text-sm); min-width:240px; outline:none;">
+                                <button type="submit" class="btn"
+                                    style="background:#fff; color:var(--primary); font-weight:600;">Đăng Ký</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Section: Tất Cả Bài Viết -->
+                    <div style="margin-top: var(--sp-16);">
+                        <div class="section-header reveal">
+                            <h2>Tất Cả Bài Viết</h2>
+                            <div class="line"></div>
+                        </div>
+                        <div id="all-articles-grid"
+                            style="display:grid; grid-template-columns:repeat(3, 1fr); gap:var(--sp-8);"></div>
+                        <div style="text-align:center; margin-top:var(--sp-12);">
+                            <a href="pages/category.html" class="btn btn-outline"
+                                style="padding:var(--sp-3) var(--sp-8);">Xem Tất Cả Bài Viết <span
+                                    class="material-symbols-outlined" style="font-size:18px;">arrow_forward</span></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Sidebar (3 col - changed from 4) -->
+                <aside style="grid-column: span 3;">
+                    <div class="sidebar-panel sticky-sidebar reveal-sidebar-item">
+                        <div class="reveal-sidebar-item" style="transition-delay:0.1s;">
+                            <h3
+                                style="font-family:var(--font-label); font-size:var(--text-xs); text-transform:uppercase; letter-spacing:0.15em; color:var(--secondary); border-bottom:1px solid var(--border-light); padding-bottom:var(--sp-2);">
+                                Tâm Điểm Chú Ý</h3>
+                            <div id="trending-list"></div>
+                        </div>
+
+                        <!-- Newsletter Widget -->
+                        <div class="reveal-sidebar-item"
+                            style="background:var(--primary-container); color:var(--on-primary-container); padding:var(--sp-6); border-radius:var(--radius-lg); margin-top:var(--sp-4); transition-delay:0.2s;">
+                            <h4
+                                style="color:var(--on-primary-container); font-size:var(--text-lg); margin-bottom:var(--sp-2);">
+                                Bản Tin Tinh Hoa</h4>
+                            <p
+                                style="color:var(--on-primary-container); opacity:0.8; font-size:12px; margin-bottom:var(--sp-4);">
+                                Nhận các bài phân tích sâu sắc nhất về chính trị và công nghệ vào mỗi sáng thứ Hai.</p>
+                            <input type="email" placeholder="Email của bạn..."
+                                style="width:100%; padding:var(--sp-2) var(--sp-4); border-radius:var(--radius); border:1px solid var(--outline-variant); background:var(--surface-container-highest); color:var(--on-surface); font-size:var(--text-xs); margin-bottom:var(--sp-2); outline:none;">
+                            <button class="btn"
+                                style="width:100%; background:var(--primary); color:var(--on-primary); font-weight:700; font-size:var(--text-xs);">ĐĂNG
+                                KÝ NGAY</button>
+                        </div>
+
+                        <!-- Curated Collection -->
+                        <div class="curated-widget reveal-sidebar-item" style="transition-delay:0.3s;">
+                            <div class="bg-overlay"></div>
+                            <div class="content">
+                                <h3>EDITOR'S CHOICE</h3>
+                                <h4>Tương Lai Của Năng Lượng</h4>
+                                <p>Khám phá loạt bài phân tích chuyên sâu về quá trình chuyển đổi năng lượng tái tạo.
+                                </p>
+                                <a href="pages/category.html" class="btn"
+                                    style="background:var(--surface); color:var(--primary);">ĐỌC NGAY</a>
+                            </div>
+                        </div>
+
+                        <!-- Statistics/Poll -->
+                        <div class="reveal-sidebar-item"
+                            style="padding:var(--sp-6); border:1px solid var(--border-light); border-radius:var(--radius-lg); text-align:center; transition-delay:0.4s;">
+                            <h5
+                                style="font-family:var(--font-label); font-size:10px; color:var(--outline); text-transform:uppercase;">
+                                Độc giả bình chọn</h5>
+                            <p
+                                style="font-family:var(--font-headline); font-size:var(--text-sm); color:var(--primary); margin: var(--sp-2) 0;">
+                                Bạn quan tâm đến chủ đề nào nhất trong năm 2026?</p>
+                            <div style="display:flex; flex-direction:column; gap:var(--sp-2);">
+                                <button class="btn btn-outline" style="font-size:12px; padding:var(--sp-2);">Kỹ Thuật Số
+                                    (45%)</button>
+                                <button class="btn btn-outline" style="font-size:12px; padding:var(--sp-2);">Biến Đổi
+                                    Khí Hậu (30%)</button>
+                            </div>
+                        </div>
+
+                        <div class="sidebar-fill-decorative">
+                            <p>Premium Digital Journalism • The Newsroom Prime • Est. 2026</p>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo"><a href="index.html">The Newsroom Prime</a></div>
+                <p>Góc Nhìn Độc Lập Giữa Dòng Chảy Số.</p>
+            </div>
+            <div class="footer-col">
+                <h5>Tổ Chức</h5>
+                <div class="footer-links"><a href="pages/about.html">Giới Thiệu</a><a href="pages/category.html">Tất Cả
+                        Bài Viết</a><a href="#">Tuyển Dụng</a></div>
+            </div>
+            <div class="footer-col">
+                <h5>Pháp Lý</h5>
+                <div class="footer-links"><a href="#">Chính Sách Bảo Mật</a><a href="#">Điều Khoản Dịch Vụ</a></div>
+            </div>
+            <div class="footer-col">
+                <h5>Kết Nối</h5>
+                <div class="footer-links"><a href="#">Twitter</a><a href="#">LinkedIn</a><a
+                        href="pages/contact.html">Liên Hệ Tòa Soạn</a></div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 The Newsroom Prime. Kỷ Nguyên Báo Chí Nguyên Bản.</p>
+        </div>
+    </footer>
+
+    <!-- Search Overlay -->
+    <div id="search-overlay"
+        style="display:none; position:fixed; inset:0; background:rgba(248,249,250,0.92); backdrop-filter:blur(20px); z-index:2000; align-items:flex-start; justify-content:center; padding-top:15vh;">
+        <div style="width:100%; max-width:800px; padding:0 1rem;">
+            <div
+                style="display:flex; align-items:center; gap:1rem; border-bottom:2px solid var(--primary); padding-bottom:0.5rem;">
+                <span class="material-symbols-outlined" style="font-size:2rem; color:var(--outline);">search</span>
+                <input type="text" id="live-search-input" placeholder="Tìm kiếm theo từ khóa, tác giả, hoặc chủ đề..."
+                    style="flex:1; font-size:1.5rem; font-family:var(--font-body); background:transparent; color:var(--primary); border:none; outline:none;">
+                <button id="close-search" class="icon-btn"><span class="material-symbols-outlined">close</span></button>
+            </div>
+            <div id="search-suggestions" style="margin-top:1rem;"></div>
+        </div>
+    </div>
+
+    <script src="js/data/articles.js"></script>
+    <script src="js/data/auth.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/components/search.js"></script>
+    <script>
+        /* Initial data rendering */
+        document.addEventListener("DOMContentLoaded", () => {
+            renderHero();
+            renderLatestCards();
+            renderTrending();
+            renderAllArticles();
+            initScrollAnimations(); // Trigger animation observer for newly rendered items
+        });
+
+        function renderHero() {
+            const hero = getFeaturedArticles()[0];
+            if (!hero) return;
+            document.getElementById("hero-container").innerHTML = `
+            <a href="pages/article.html?id=${hero.id}" class="hero-article reveal" style="display:block; text-decoration:none; margin-bottom:var(--sp-12);">
+                <div class="hero-image-wrap">
+                    <img src="${hero.image}" alt="${hero.title}">
+                    <div class="hero-gradient"></div>
+                    <div class="hero-content">
+                        <span class="label">${hero.categoryLabel}</span>
+                        <h1>${hero.title}</h1>
+                        <p class="excerpt">${hero.excerpt}</p>
+                        <div class="meta">
+                            <span><span class="material-symbols-outlined" style="font-size:16px;">edit_note</span> Bởi ${hero.author}</span>
+                            <span>•</span>
+                            <span><span class="material-symbols-outlined" style="font-size:16px;">schedule</span> ${hero.readTime} phút đọc</span>
+                            <span>•</span>
+                            <span class="hero-action">Khám phá ngay <span class="material-symbols-outlined">arrow_right_alt</span></span>
+                        </div>
+                    </div>
+                </div>
+            </a>`;
+        }
+
+        function renderLatestCards() {
+            const arts = getLatestArticles(4).slice(0, 4);
+            const grid = document.getElementById("latest-grid");
+            grid.innerHTML = arts.map((a, i) => `
+            <a href="pages/article.html?id=${a.id}" class="editorial-card reveal" style="animation-delay:${i * 0.1}s;">
+                <span class="label">${a.categoryLabel}</span>
+                <h3>${a.title}</h3>
+                <p>${a.excerpt}</p>
+                <div class="card-image"><img src="${a.image}" alt="${a.title}"></div>
+                <div class="meta" style="margin-top:var(--sp-4);"><span>${a.author}</span><span>•</span><span>${timeAgo(a.date)}</span></div>
+            </a>`).join("");
+        }
+
+        function renderTrending() {
+            const trending = [...ArticlesDB].sort((a, b) => b.views - a.views).slice(0, 5);
+            document.getElementById("trending-list").innerHTML = trending.map((a, i) => `
+            <a href="pages/article.html?id=${a.id}" class="trending-item">
+                <span class="number">${i + 1}</span>
+                <div>
+                    <h4>${a.title}</h4>
+                    <div class="meta"><span>${a.categoryLabel}</span><span>•</span><span>${formatViews(a.views)} độc giả</span></div>
+                </div>
+            </a>`).join("");
+        }
+
+        function renderAllArticles() {
+            const arts = ArticlesDB.slice(3);
+            const grid = document.getElementById("all-articles-grid");
+            grid.innerHTML = arts.map((a, i) => `
+            <a href="pages/article.html?id=${a.id}" class="editorial-card reveal" style="animation-delay:${i * 0.08}s;">
+                <div class="card-image" style="margin-top:0; margin-bottom:var(--sp-4);"><img src="${a.image}" alt="${a.title}"></div>
+                <span class="label">${a.categoryLabel}</span>
+                <h3 style="font-size:var(--text-lg);">${a.title}</h3>
+                <div class="meta"><span>${a.author}</span><span>•</span><span>${timeAgo(a.date)}</span></div>
+            </a>`).join("");
+        }
+    </script>
+</body>
+
+</html>

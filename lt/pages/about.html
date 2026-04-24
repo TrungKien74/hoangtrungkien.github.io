@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới Thiệu - The Newsroom Prime</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .about-hero {
+            text-align: center;
+            margin-bottom: var(--sp-16);
+        }
+
+        .about-hero h1 {
+            font-family: var(--font-headline);
+            font-size: var(--text-5xl);
+            color: var(--primary);
+            margin-bottom: var(--sp-4);
+        }
+
+        @media(min-width:768px) {
+            .about-hero h1 {
+                font-size: var(--text-6xl);
+            }
+        }
+
+        .about-hero p {
+            font-size: var(--text-xl);
+            color: var(--on-surface-variant);
+            max-width: 42rem;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .mission-block {
+            background: var(--surface-container-lowest);
+            border-radius: var(--radius-xl);
+            padding: var(--sp-12);
+            box-shadow: var(--shadow-tonal);
+            margin-bottom: var(--sp-16);
+        }
+
+        .mission-block h2 {
+            font-family: var(--font-headline);
+            font-size: var(--text-3xl);
+            color: var(--primary);
+            margin-bottom: var(--sp-6);
+            font-style: italic;
+        }
+
+        .mission-block p {
+            font-size: var(--text-lg);
+            color: var(--on-surface-variant);
+            line-height: 1.8;
+            margin-bottom: var(--sp-6);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--sp-8);
+            margin-bottom: var(--sp-16);
+        }
+
+        @media(max-width:768px) {
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .value-card {
+            padding: var(--sp-8);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border-light);
+            transition: all var(--t-normal);
+            background: var(--surface-container-lowest);
+        }
+
+        .value-card:hover {
+            background: var(--surface-container-highest);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .value-card .icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-lg);
+            background: var(--primary-container);
+            color: var(--on-primary-container);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--sp-4);
+        }
+
+        .value-card h3 {
+            font-family: var(--font-headline);
+            font-size: var(--text-xl);
+            color: var(--primary);
+            margin-bottom: var(--sp-3);
+        }
+
+        .value-card p {
+            font-size: var(--text-sm);
+            color: var(--on-surface-variant);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .masthead {
+            margin-bottom: var(--sp-16);
+        }
+
+        .masthead h2 {
+            font-family: var(--font-headline);
+            font-size: var(--text-3xl);
+            color: var(--primary);
+            margin-bottom: var(--sp-3);
+            font-style: italic;
+            text-align: center;
+        }
+
+        .masthead>p {
+            text-align: center;
+            color: var(--on-surface-variant);
+            margin-bottom: var(--sp-10);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--sp-6);
+        }
+
+        @media(max-width:1024px) {
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media(max-width:640px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .team-card {
+            text-align: center;
+            padding: var(--sp-6);
+            border-radius: var(--radius-xl);
+            background: var(--surface-container-lowest);
+            border: 1px solid var(--border-light);
+            transition: all var(--t-normal);
+        }
+
+        .team-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .team-card img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto var(--sp-3);
+            display: block;
+        }
+
+        .team-card h4 {
+            font-family: var(--font-label);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: var(--sp-1);
+        }
+
+        .team-card span {
+            font-size: var(--text-sm);
+            color: var(--on-surface-variant);
+        }
+
+        .timeline {
+            max-width: 42rem;
+            margin: 0 auto var(--sp-16);
+        }
+
+        .timeline h2 {
+            font-family: var(--font-headline);
+            font-size: var(--text-3xl);
+            color: var(--primary);
+            margin-bottom: var(--sp-10);
+            font-style: italic;
+            text-align: center;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: var(--sp-6);
+            margin-bottom: var(--sp-8);
+        }
+
+        .timeline-year {
+            font-family: var(--font-headline);
+            font-size: var(--text-3xl);
+            color: var(--primary-fixed-dim);
+            flex-shrink: 0;
+            min-width: 5rem;
+        }
+
+        .timeline-item h4 {
+            font-family: var(--font-label);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--primary);
+            margin-bottom: var(--sp-1);
+        }
+
+        .timeline-item p {
+            font-size: var(--text-sm);
+            color: var(--on-surface-variant);
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header" role="banner">
+        <div class="header-inner">
+            <div class="logo"><a href="../index.html">The Newsroom Prime</a></div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="../index.html">Trang Chủ</a></li>
+                    <li><a href="category.html">Khám Phá</a></li>
+                    <li><a href="about.html" class="active">Tòa Soạn</a></li>
+                    <li><a href="contact.html">Liên Hệ</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions"><button class="icon-btn" id="btn-search" aria-label="Tìm kiếm"><span
+                        class="material-symbols-outlined">search</span></button><button class="icon-btn"
+                    id="btn-theme-toggle" aria-label="Chuyển giao diện"><span
+                        class="material-symbols-outlined">dark_mode</span></button><a href="auth.html"
+                    class="btn btn-primary">Đăng Nhập / Đăng Ký</a></div>
+        </div>
+    </header>
+
+    <main role="main">
+        <div class="container-narrow fade-in">
+            <div class="about-hero reveal">
+                <h1>Tòa Soạn Của Chúng Tôi</h1>
+                <p>The Newsroom Prime ra đời từ niềm tin rằng báo chí chất lượng xứng đáng được thiết kế đẹp, được kể
+                    lại chậm rãi, và được tiếp cận bởi tất cả mọi người.</p>
+            </div>
+
+            <div class="mission-block reveal">
+                <h2>"Sự Xuất Sắc Được Chọn Lọc."</h2>
+                <p>Chúng tôi không chạy theo tốc độ. Trong kỷ nguyên tin giật tít và clickbait, chúng tôi chọn đi ngược
+                    dòng — nơi mỗi bài viết là một tác phẩm được chăm chút từ câu chữ đến hình ảnh.</p>
+                <p>Tòa soạn của chúng tôi hoạt động theo nguyên tắc <strong>Slow Journalism</strong> — báo chí chậm
+                    nhưng sâu, ít nhưng hay, ngắn nhưng thấm.</p>
+            </div>
+
+            <div class="section-header reveal">
+                <h2>Giá Trị Cốt Lõi</h2>
+                <div class="line"></div>
+            </div>
+            <div class="values-grid">
+                <div class="value-card reveal">
+                    <div class="icon"><span class="material-symbols-outlined">verified</span></div>
+                    <h3>Xác Thực</h3>
+                    <p>Mọi thông tin được kiểm chứng qua ít nhất 3 nguồn độc lập trước khi xuất bản.</p>
+                </div>
+                <div class="value-card reveal">
+                    <div class="icon"><span class="material-symbols-outlined">visibility</span></div>
+                    <h3>Minh Bạch</h3>
+                    <p>Chúng tôi công khai quy trình biên tập, nguồn tài chính và các xung đột lợi ích tiềm ẩn.</p>
+                </div>
+                <div class="value-card reveal">
+                    <div class="icon"><span class="material-symbols-outlined">eco</span></div>
+                    <h3>Bền Vững</h3>
+                    <p>Mô hình kinh doanh dựa trên độc giả, không phụ thuộc quảng cáo nhắm mục tiêu.</p>
+                </div>
+                <div class="value-card reveal">
+                    <div class="icon"><span class="material-symbols-outlined">diversity_3</span></div>
+                    <h3>Đa Dạng</h3>
+                    <p>Tòa soạn đa văn hóa với phóng viên từ 8 quốc gia và 5 châu lục.</p>
+                </div>
+                <div class="value-card reveal">
+                    <div class="icon"><span class="material-symbols-outlined">design_services</span></div>
+                    <h3>Thiết Kế</h3>
+                    <p>Tin rằng trải nghiệm đọc nên được tôn trọng qua giao diện premium.</p>
+                </div>
+                <div class="value-card reveal">
+                    <div class="icon"><span class="material-symbols-outlined">psychology</span></div>
+                    <h3>Chiều Sâu</h3>
+                    <p>Ưu tiên phân tích chuyên sâu thay vì tóm tắt nhanh — chất lượng trên số lượng.</p>
+                </div>
+            </div>
+
+            <div class="masthead reveal">
+                <h2>Đội Ngũ Biên Tập</h2>
+                <p>Những người kể chuyện đứng sau The Newsroom Prime.</p>
+                <!-- Team section -->
+                <div class="team-card reveal"><img
+                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80"
+                        alt="Trần Minh Khoa">
+                    <h4>Trần Minh Khoa</h4><span>Phóng viên Quốc tế</span>
+                </div>
+                <div class="team-card reveal"><img
+                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80"
+                        alt="Vũ Hoàng Long">
+                    <h4>Vũ Hoàng Long</h4><span>Biên tập viên Công nghệ</span>
+                </div>
+                <div class="team-card reveal"><img
+                        src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80"
+                        alt="Trương Hải Yến">
+                    <h4>Trương Hải Yến</h4><span>Phóng viên Văn hóa</span>
+                </div>
+                <div class="team-card reveal"><img
+                        src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=200&q=80"
+                        alt="Lê Minh Đạt">
+                    <h4>Lê Minh Đạt</h4><span>Biên tập viên Tài chính</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline reveal">
+            <h2>Hành Trình Phát Triển</h2>
+            <div class="timeline-item"><span class="timeline-year">2024</span>
+                <div>
+                    <h4>Thành Lập</h4>
+                    <p>Khởi đầu với 3 người viết và một tầm nhìn về báo chí chất lượng.</p>
+                </div>
+            </div>
+            <div class="timeline-item"><span class="timeline-year">2025</span>
+                <div>
+                    <h4>Mở Rộng</h4>
+                    <p>Đội ngũ phát triển lên 12 người, ra mắt bản tin email hàng ngày.</p>
+                </div>
+            </div>
+            <div class="timeline-item"><span class="timeline-year">2026</span>
+                <div>
+                    <h4>Hiện Tại</h4>
+                    <p>Hơn 200,000 độc giả thường xuyên, 5 danh mục chuyên sâu, và nền tảng số tối ưu.</p>
+                </div>
+            </div>
+        </div>
+        </div>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo"><a href="../index.html">The Newsroom Prime</a></div>
+                <p>Góc Nhìn Độc Lập Giữa Dòng Chảy Số.</p>
+            </div>
+            <div class="footer-col">
+                <h5>Tổ Chức</h5>
+                <div class="footer-links"><a href="about.html">Giới Thiệu</a><a href="category.html">Tất Cả Bài
+                        Viết</a><a href="#">Tuyển Dụng</a></div>
+            </div>
+            <div class="footer-col">
+                <h5>Pháp Lý</h5>
+                <div class="footer-links"><a href="#">Chính Sách Bảo Mật</a><a href="#">Điều Khoản Dịch Vụ</a></div>
+            </div>
+            <div class="footer-col">
+                <h5>Kết Nối</h5>
+                <div class="footer-links"><a href="#">Twitter</a><a href="#">LinkedIn</a><a href="contact.html">Liên Hệ
+                        Tòa Soạn</a></div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 The Newsroom Prime. Kỷ Nguyên Báo Chí Nguyên Bản.</p>
+        </div>
+    </footer>
+
+    <div id="search-overlay"
+        style="display:none; position:fixed; inset:0; background:rgba(248,249,250,0.92); backdrop-filter:blur(20px); z-index:2000; align-items:flex-start; justify-content:center; padding-top:15vh;">
+        <div style="width:100%; max-width:800px; padding:0 1rem;">
+            <div
+                style="display:flex; align-items:center; gap:1rem; border-bottom:2px solid var(--primary); padding-bottom:0.5rem;">
+                <span class="material-symbols-outlined"
+                    style="font-size:2rem; color:var(--outline);">search</span><input type="text" id="live-search-input"
+                    placeholder="Tìm kiếm..."
+                    style="flex:1; font-size:1.5rem; font-family:var(--font-body); background:transparent; color:var(--primary); border:none; outline:none;"><button
+                    id="close-search" class="icon-btn"><span class="material-symbols-outlined">close</span></button>
+            </div>
+            <div id="search-suggestions" style="margin-top:1rem;"></div>
+        </div>
+    </div>
+
+    <script src="../js/data/auth.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/components/search.js"></script>
+</body>
+
+</html>

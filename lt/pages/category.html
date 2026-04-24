@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khám Phá Danh Mục - The Newsroom Prime</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .category-hero {
+            text-align: center;
+            margin-bottom: var(--sp-16);
+        }
+
+        .category-hero h1 {
+            font-family: var(--font-headline);
+            font-size: var(--text-5xl);
+            color: var(--primary);
+            margin-bottom: var(--sp-6);
+        }
+
+        @media(min-width:768px) {
+            .category-hero h1 {
+                font-size: var(--text-6xl);
+            }
+        }
+
+        .category-hero p {
+            font-size: var(--text-lg);
+            color: var(--on-surface-variant);
+            max-width: 42rem;
+            margin: 0 auto;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: var(--sp-3);
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: var(--sp-12);
+        }
+
+        .filter-tab {
+            padding: var(--sp-2) var(--sp-5);
+            border-radius: var(--radius-pill);
+            font-family: var(--font-label);
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: all var(--t-fast);
+            background: var(--surface-container-high);
+            color: var(--on-surface);
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--sp-2);
+        }
+
+        .filter-tab.active,
+        .filter-tab:hover {
+            background: var(--primary);
+            color: var(--on-primary);
+        }
+
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--sp-8);
+        }
+
+        @media(max-width:1024px) {
+            .article-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media(max-width:640px) {
+            .article-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .archive-card {
+            background: var(--surface-container-lowest);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            transition: all var(--t-normal);
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .archive-card:hover {
+            background: var(--surface-container-highest);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            opacity: 1;
+        }
+
+        .archive-card img {
+            width: 100%;
+            height: 12rem;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+
+        .archive-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .archive-card .body {
+            padding: var(--sp-6);
+        }
+
+        .archive-card .cat {
+            font-family: var(--font-label);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: var(--sp-2);
+        }
+
+        .archive-card h3 {
+            font-family: var(--font-headline);
+            font-size: var(--text-xl);
+            color: var(--primary);
+            margin-bottom: var(--sp-2);
+            transition: color var(--t-fast);
+        }
+
+        .archive-card:hover h3 {
+            color: var(--secondary);
+        }
+
+        .archive-card p {
+            font-size: var(--text-sm);
+            color: var(--on-surface-variant);
+            line-height: 1.5;
+            margin-bottom: var(--sp-3);
+        }
+
+        .archive-card .meta {
+            font-family: var(--font-label);
+            font-size: var(--text-xs);
+            color: var(--outline);
+            display: flex;
+            gap: var(--sp-2);
+        }
+
+        .stats-bar {
+            display: flex;
+            gap: var(--sp-8);
+            justify-content: center;
+            margin-bottom: var(--sp-16);
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-num {
+            font-family: var(--font-headline);
+            font-size: var(--text-4xl);
+            color: var(--primary);
+            display: block;
+        }
+
+        .stat-label {
+            font-family: var(--font-label);
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--on-surface-variant);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header" role="banner">
+        <div class="header-inner">
+            <div class="logo"><a href="../index.html">The Newsroom Prime</a></div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="../index.html">Trang Chủ</a></li>
+                    <li><a href="category.html" class="active">Khám Phá</a></li>
+                    <li><a href="about.html">Tòa Soạn</a></li>
+                    <li><a href="contact.html">Liên Hệ</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions"><button class="icon-btn" id="btn-search" aria-label="Tìm kiếm"><span
+                        class="material-symbols-outlined">search</span></button><button class="icon-btn"
+                    id="btn-theme-toggle" aria-label="Chuyển giao diện"><span
+                        class="material-symbols-outlined">dark_mode</span></button><a href="auth.html"
+                    class="btn btn-primary">Đăng Nhập / Đăng Ký</a></div>
+        </div>
+    </header>
+
+    <main role="main">
+        <div class="container-narrow fade-in">
+            <div class="category-hero">
+                <h1>Khám Phá</h1>
+                <p>Duyệt qua kho lưu trữ bài viết phong phú — phân tích chính trị, khám phá khoa học, và nhiều hơn nữa.
+                </p>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="stats-bar reveal">
+                <div class="stat-item"><span class="stat-num" id="stat-total">0</span><span class="stat-label">Bài
+                        Viết</span></div>
+                <div class="stat-item"><span class="stat-num" id="stat-authors">0</span><span class="stat-label">Tác
+                        Giả</span></div>
+                <div class="stat-item"><span class="stat-num" id="stat-views">0</span><span class="stat-label">Lượt
+                        Đọc</span></div>
+            </div>
+
+            <!-- Category Filters -->
+            <div class="filter-tabs" id="category-filters">
+                <button class="filter-tab active" data-cat="all"><span class="material-symbols-outlined"
+                        style="font-size:16px;">apps</span> Tất Cả</button>
+            </div>
+
+            <!-- Article Grid -->
+            <div class="article-grid" id="article-grid"></div>
+        </div>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo"><a href="../index.html">The Newsroom Prime</a></div>
+                <p>Góc Nhìn Độc Lập Giữa Dòng Chảy Số.</p>
+            </div>
+            <div class="footer-col">
+                <h5>Tổ Chức</h5>
+                <div class="footer-links"><a href="about.html">Giới Thiệu</a><a href="category.html">Tất Cả Bài
+                        Viết</a><a href="#">Tuyển Dụng</a></div>
+            </div>
+            <div class="footer-col">
+                <h5>Pháp Lý</h5>
+                <div class="footer-links"><a href="#">Chính Sách Bảo Mật</a><a href="#">Điều Khoản Dịch Vụ</a></div>
+            </div>
+            <div class="footer-col">
+                <h5>Kết Nối</h5>
+                <div class="footer-links"><a href="#">Twitter</a><a href="#">LinkedIn</a><a href="contact.html">Liên Hệ
+                        Tòa Soạn</a></div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 The Newsroom Prime. Kỷ Nguyên Báo Chí Nguyên Bản.</p>
+        </div>
+    </footer>
+
+    <div id="search-overlay"
+        style="display:none; position:fixed; inset:0; background:rgba(248,249,250,0.92); backdrop-filter:blur(20px); z-index:2000; align-items:flex-start; justify-content:center; padding-top:15vh;">
+        <div style="width:100%; max-width:800px; padding:0 1rem;">
+            <div
+                style="display:flex; align-items:center; gap:1rem; border-bottom:2px solid var(--primary); padding-bottom:0.5rem;">
+                <span class="material-symbols-outlined"
+                    style="font-size:2rem; color:var(--outline);">search</span><input type="text" id="live-search-input"
+                    placeholder="Tìm kiếm..."
+                    style="flex:1; font-size:1.5rem; font-family:var(--font-body); background:transparent; color:var(--primary); border:none; outline:none;"><button
+                    id="close-search" class="icon-btn"><span class="material-symbols-outlined">close</span></button>
+            </div>
+            <div id="search-suggestions" style="margin-top:1rem;"></div>
+        </div>
+    </div>
+
+    <script src="../js/data/articles.js"></script>
+    <script src="../js/data/auth.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/components/search.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Stats
+            document.getElementById('stat-total').textContent = ArticlesDB.length;
+            document.getElementById('stat-authors').textContent = [...new Set(ArticlesDB.map(a => a.author))].length;
+            document.getElementById('stat-views').textContent = formatViews(ArticlesDB.reduce((s, a) => s + a.views, 0));
+
+            // Dynamic filter tabs from Categories
+            const filtersEl = document.getElementById('category-filters');
+            Object.entries(Categories).forEach(([key, cat]) => {
+                const btn = document.createElement('button');
+                btn.className = 'filter-tab';
+                btn.dataset.cat = key;
+                btn.innerHTML = `<span class="material-symbols-outlined" style="font-size:16px;">${cat.icon}</span> ${cat.label}`;
+                filtersEl.appendChild(btn);
+            });
+
+            // Render articles
+            renderArticles('all');
+
+            // Filter click
+            document.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.addEventListener('click', function () {
+                    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    renderArticles(this.dataset.cat);
+                });
+            });
+        });
+
+        function renderArticles(cat) {
+            const articles = getArticlesByCategory(cat);
+            const grid = document.getElementById('article-grid');
+            grid.innerHTML = articles.map((a, i) => `
+            <a href="article.html?id=${a.id}" class="archive-card reveal" style="animation-delay:${i * 0.06}s;">
+                <img src="${a.image}" alt="${a.title}">
+                <div class="body"><div class="cat">${a.categoryLabel}</div><h3>${a.title}</h3><p>${a.excerpt}</p><div class="meta"><span>${a.author}</span><span>•</span><span>${timeAgo(a.date)}</span><span>•</span><span>${a.readTime} phút</span></div></div>
+            </a>`).join("");
+            initScrollAnimations();
+        }
+    </script>
+</body>
+
+</html>

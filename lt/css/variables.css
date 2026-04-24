@@ -1,0 +1,140 @@
+/* Design Tokens - Light/Dark Mode Variables */
+
+:root {
+  /* Light Mode */
+  --primary: #0e1c2b;
+  --primary-container: #233141;
+  --on-primary: #ffffff;
+  --on-primary-container: #8b99ac;
+  --primary-fixed: #d6e4f9;
+  --primary-fixed-dim: #bac8dc;
+
+  --secondary: #b7102a;
+  --secondary-container: #db313f;
+  --on-secondary: #ffffff;
+  --on-secondary-container: #fffbff;
+
+  --surface: #f8f9fa;
+  --surface-bright: #f8f9fa;
+  --surface-dim: #d9dadb;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f3f4f5;
+  --surface-container: #edeeef;
+  --surface-container-high: #e7e8e9;
+  --surface-container-highest: #e1e3e4;
+  --surface-variant: #e1e3e4;
+
+  --on-surface: #191c1d;
+  --on-surface-variant: #454652;
+  --on-background: #191c1d;
+  --background: #f8f9fa;
+
+  --outline: #767683;
+  --outline-variant: #c6c5d4;
+  --border-light: rgba(198, 197, 212, 0.2);
+
+  --error: #ba1a1a;
+  --error-container: #ffdad6;
+  --on-error: #ffffff;
+
+  --inverse-surface: #2e3132;
+  --inverse-on-surface: #f0f1f2;
+  --inverse-primary: #bac8dc;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.08);
+  --shadow-tonal: 0 20px 40px rgba(25, 28, 29, 0.05);
+  --shadow-floating: 0 20px 40px rgba(25, 28, 29, 0.12);
+
+  /* Typography */
+  --font-headline: 'Newsreader', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-label: 'Public Sans', sans-serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+  --text-7xl: 4.5rem;
+
+  /* Spacing */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.25rem;
+  --sp-6: 1.5rem;
+  --sp-8: 2rem;
+  --sp-10: 2.5rem;
+  --sp-12: 3rem;
+  --sp-16: 4rem;
+  --sp-20: 5rem;
+  --sp-24: 6rem;
+
+  /* Layout */
+  --max-w-screen-2xl: 1536px;
+  --max-w-7xl: 80rem;
+  --header-height: 72px;
+  --radius-sm: 0.125rem;
+  --radius: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-pill: 9999px;
+
+  /* Transitions */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --t-fast: 0.15s var(--ease);
+  --t-normal: 0.3s var(--ease);
+  --t-slow: 0.5s var(--ease);
+}
+
+/* Dark Mode Override */
+[data-theme="dark"] {
+  --primary: #ffffff;
+  --primary-container: #262626;
+  --on-primary: #000000;
+  --on-primary-container: #ffffff;
+
+  --secondary: #ff4757;
+  --secondary-container: #570000;
+  --on-secondary: #ffffff;
+  --on-secondary-container: #ffdad8;
+
+  --surface: #121212;
+  --surface-bright: #1c1c1c;
+  --surface-dim: #0a0a0a;
+  --surface-container-lowest: #000000;
+  --surface-container-low: #151515;
+  --surface-container: #1a1a1a;
+  --surface-container-high: #242424;
+  --surface-container-highest: #2e2e2e;
+  --surface-variant: #3a3a3a;
+
+  --on-surface: #ffffff;
+  --on-surface-variant: #a3a3a3;
+  --on-background: #ffffff;
+  --background: #121212;
+
+  --outline: #737373;
+  --outline-variant: #404040;
+  --border-light: rgba(255, 255, 255, 0.1);
+
+  --inverse-surface: #ffffff;
+  --inverse-on-surface: #121212;
+  --inverse-primary: #000000;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.7);
+  --shadow-tonal: 0 20px 40px rgba(0, 0, 0, 0.6);
+  --shadow-floating: 0 20px 40px rgba(0, 0, 0, 0.8);
+}

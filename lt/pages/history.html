@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lịch Sử Đọc - The Newsroom Prime</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .page-hero { text-align:center; margin-bottom:var(--sp-16); }
+        .page-hero h1 { font-family:var(--font-headline); font-size:var(--text-5xl); color:var(--primary); margin-bottom:var(--sp-4); }
+        @media(min-width:768px) { .page-hero h1 { font-size:var(--text-6xl); } }
+        .page-hero p { font-size:var(--text-lg); color:var(--on-surface-variant); max-width:42rem; margin:0 auto; }
+        .history-list { max-width:56rem; margin:0 auto; }
+        .history-item { display:flex; gap:var(--sp-6); padding:var(--sp-6); margin-bottom:var(--sp-4); border-radius:var(--radius-xl); background:var(--surface-container-lowest); border:1px solid var(--border-light); transition:all var(--t-normal); cursor:pointer; text-decoration:none; color:inherit; }
+        .history-item:hover { background:var(--surface-container-highest); transform:translateX(4px); box-shadow:var(--shadow-sm); opacity:1; }
+        .history-item img { width:160px; height:100px; object-fit:cover; border-radius:var(--radius-lg); flex-shrink:0; }
+        .history-item .info { display:flex; flex-direction:column; justify-content:center; flex:1; min-width:0; }
+        .history-item .cat { font-family:var(--font-label); font-size:10px; text-transform:uppercase; letter-spacing:0.15em; color:var(--secondary); font-weight:600; margin-bottom:var(--sp-1); }
+        .history-item h3 { font-family:var(--font-headline); font-size:var(--text-xl); color:var(--primary); margin:0 0 var(--sp-2); transition:color var(--t-fast); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+        .history-item:hover h3 { color:var(--secondary); }
+        .history-item .meta { font-family:var(--font-label); font-size:var(--text-xs); color:var(--outline); display:flex; gap:var(--sp-2); }
+        .history-time { font-family:var(--font-label); font-size:var(--text-xs); color:var(--on-surface-variant); flex-shrink:0; text-align:right; align-self:center; min-width:80px; }
+        .clear-history { display:flex; justify-content:flex-end; margin-bottom:var(--sp-8); }
+        .empty-state { text-align:center; padding:var(--sp-16); background:var(--surface-container-low); border-radius:var(--radius-xl); border:1px dashed var(--border-light); }
+        .empty-state .material-symbols-outlined { font-size:3rem; color:var(--outline); margin-bottom:var(--sp-4); }
+        .empty-state h3 { font-family:var(--font-headline); font-size:var(--text-2xl); color:var(--primary); margin-bottom:var(--sp-3); }
+        .empty-state p { color:var(--on-surface-variant); max-width:28rem; margin:0 auto var(--sp-6); }
+        @media(max-width:640px) { .history-item img { display:none; } .history-time { display:none; } }
+    </style>
+</head>
+<body>
+    <header class="site-header" role="banner"><div class="header-inner"><div class="logo"><a href="../index.html">The Newsroom Prime</a></div><nav><ul class="nav-links"><li><a href="../index.html">Trang Chủ</a></li><li><a href="category.html">Khám Phá</a></li><li><a href="about.html">Tòa Soạn</a></li><li><a href="contact.html">Liên Hệ</a></li></ul></nav><div class="header-actions"><button class="icon-btn" id="btn-theme-toggle" aria-label="Chuyển giao diện"><span class="material-symbols-outlined">dark_mode</span></button><a href="auth.html" class="btn btn-primary">Đăng Nhập / Đăng Ký</a></div></div></header>
+
+    <main role="main">
+        <div class="container-narrow fade-in">
+            <div class="page-hero"><h1>Lịch Sử Đọc</h1><p>Các bài viết bạn đã đọc gần đây, được sắp xếp theo thời gian.</p></div>
+            <div id="history-container"></div>
+        </div>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo"><a href="../index.html">The Newsroom Prime</a></div>
+                <p>Góc Nhìn Độc Lập Giữa Dòng Chảy Số.</p>
+            </div>
+            <div class="footer-col">
+                <h5>Tổ Chức</h5>
+                <div class="footer-links"><a href="about.html">Giới Thiệu</a><a href="category.html">Tất Cả Bài Viết</a><a href="#">Tuyển Dụng</a></div>
+            </div>
+            <div class="footer-col">
+                <h5>Pháp Lý</h5>
+                <div class="footer-links"><a href="#">Chính Sách Bảo Mật</a><a href="#">Điều Khoản Dịch Vụ</a></div>
+            </div>
+            <div class="footer-col">
+                <h5>Kết Nối</h5>
+                <div class="footer-links"><a href="#">Twitter</a><a href="#">LinkedIn</a><a href="contact.html">Liên Hệ Tòa Soạn</a></div>
+            </div>
+        </div>
+        <div class="footer-bottom"><p>© 2026 The Newsroom Prime. Kỷ Nguyên Báo Chí Nguyên Bản.</p></div>
+    </footer>
+
+    <script src="../js/data/articles.js"></script>
+    <script src="../js/data/auth.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const history = Auth.getHistory();
+        const container = document.getElementById("history-container");
+
+        if (history.length === 0) {
+            container.innerHTML = `<div class="empty-state"><span class="material-symbols-outlined">history</span><h3>Chưa Có Lịch Sử</h3><p>Bắt đầu đọc bài viết và lịch sử sẽ được ghi nhận tự động tại đây.</p><a href="../index.html" class="btn btn-primary">Khám Phá Tin Tức</a></div>`;
+            return;
+        }
+
+        const items = history.map(h => { const a = getArticleById(h.id); return a ? { ...a, readAt: h.time } : null; }).filter(Boolean);
+        container.innerHTML = `
+            <div class="clear-history"><button class="btn btn-ghost" onclick="if(confirm('Xóa toàn bộ lịch sử đọc?')){localStorage.removeItem('np-history');location.reload();}"><span class="material-symbols-outlined" style="font-size:18px;">delete</span> Xóa Lịch Sử</button></div>
+            <div class="history-list">${items.map((a, i) => `
+                <a href="article.html?id=${a.id}" class="history-item reveal" style="animation-delay:${i*0.06}s;">
+                    <img src="${a.image}" alt="${a.title}">
+                    <div class="info"><div class="cat">${a.categoryLabel}</div><h3>${a.title}</h3><div class="meta"><span>${a.author}</span><span>•</span><span>${a.readTime} phút đọc</span></div></div>
+                    <div class="history-time">${timeAgo(a.readAt)}</div>
+                </a>`).join("")}</div>`;
+        initScrollAnimations();
+    });
+    </script>
+</body>
+</html>

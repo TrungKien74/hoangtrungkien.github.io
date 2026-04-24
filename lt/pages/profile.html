@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hồ Sơ Cá Nhân - The Newsroom Prime</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .profile-hero { background:linear-gradient(135deg,var(--primary),var(--primary-container)); border-radius:var(--radius-xl); padding:var(--sp-12); color:#fff; text-align:center; margin-bottom:var(--sp-12); position:relative; overflow:hidden; }
+        .profile-hero::before { content:''; position:absolute; inset:0; background:url('https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=40') center/cover; opacity:0.15; }
+        .profile-hero .inner { position:relative; z-index:1; }
+        .profile-hero .avatar-lg { width:96px; height:96px; border-radius:50%; object-fit:cover; border:4px solid rgba(255,255,255,0.3); margin:0 auto var(--sp-4); display:block; }
+        .profile-hero h1 { font-family:var(--font-headline); font-size:var(--text-4xl); color:#fff; margin-bottom:var(--sp-2); }
+        .profile-hero .email { font-family:var(--font-label); font-size:var(--text-sm); color:rgba(255,255,255,0.8); }
+        .profile-hero .role { display:inline-block; padding:2px 12px; border-radius:var(--radius-pill); background:rgba(255,255,255,0.15); backdrop-filter:blur(10px); font-family:var(--font-label); font-size:var(--text-xs); text-transform:uppercase; letter-spacing:0.15em; margin-top:var(--sp-4); }
+        .profile-grid { display:grid; grid-template-columns:280px 1fr; gap:var(--sp-8); }
+        @media(max-width:768px) { .profile-grid { grid-template-columns:1fr; } }
+        .profile-nav a { display:flex; align-items:center; gap:var(--sp-3); padding:var(--sp-3) var(--sp-4); border-radius:var(--radius-lg); font-family:var(--font-label); font-size:var(--text-sm); color:var(--on-surface); transition:all var(--t-fast); text-decoration:none; margin-bottom:var(--sp-2); }
+        .profile-nav a:hover, .profile-nav a.active { background:var(--surface-container-high); color:var(--primary); opacity:1; }
+        .profile-nav a .material-symbols-outlined { font-size:20px; color:var(--outline); }
+        .profile-section { background:var(--surface-container-lowest); padding:var(--sp-8); border-radius:var(--radius-xl); border:1px solid var(--border-light); }
+        .profile-section h2 { font-family:var(--font-headline); font-size:var(--text-2xl); color:var(--primary); margin-bottom:var(--sp-2); }
+        .profile-section > p { color:var(--on-surface-variant); font-size:var(--text-sm); margin-bottom:var(--sp-8); }
+        .pref-chips { display:flex; flex-wrap:wrap; gap:var(--sp-2); margin-bottom:var(--sp-8); }
+        .pref-chip { padding:var(--sp-2) var(--sp-4); border-radius:var(--radius-pill); font-family:var(--font-label); font-size:var(--text-xs); cursor:pointer; transition:all var(--t-fast); border:1px solid var(--outline-variant); background:transparent; color:var(--on-surface); }
+        .pref-chip.active { background:var(--primary); color:var(--on-primary); border-color:var(--primary); }
+        .pref-chip:hover { border-color:var(--primary); }
+        .stats-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--sp-4); margin-top:var(--sp-8); }
+        .stat-card { background:var(--surface-container-low); padding:var(--sp-6); border-radius:var(--radius-lg); text-align:center; }
+        .stat-card .num { font-family:var(--font-headline); font-size:var(--text-3xl); color:var(--primary); }
+        .stat-card .lbl { font-family:var(--font-label); font-size:var(--text-xs); text-transform:uppercase; letter-spacing:0.1em; color:var(--on-surface-variant); margin-top:var(--sp-1); }
+        .not-logged-in { text-align:center; padding:var(--sp-20); }
+        .not-logged-in h2 { font-family:var(--font-headline); font-size:var(--text-3xl); color:var(--primary); margin-bottom:var(--sp-4); }
+        .not-logged-in p { color:var(--on-surface-variant); margin-bottom:var(--sp-8); }
+    </style>
+</head>
+<body>
+    <header class="site-header" role="banner"><div class="header-inner"><div class="logo"><a href="../index.html">The Newsroom Prime</a></div><nav><ul class="nav-links"><li><a href="../index.html">Trang Chủ</a></li><li><a href="category.html">Khám Phá</a></li><li><a href="about.html">Tòa Soạn</a></li><li><a href="contact.html">Liên Hệ</a></li></ul></nav><div class="header-actions"><button class="icon-btn" id="btn-theme-toggle" aria-label="Chuyển giao diện"><span class="material-symbols-outlined">dark_mode</span></button><a href="auth.html" class="btn btn-primary">Đăng Nhập / Đăng Ký</a></div></div></header>
+
+    <main role="main">
+        <div class="container-narrow fade-in" id="profile-root"></div>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo"><a href="../index.html">The Newsroom Prime</a></div>
+                <p>Góc Nhìn Độc Lập Giữa Dòng Chảy Số.</p>
+            </div>
+            <div class="footer-col">
+                <h5>Tổ Chức</h5>
+                <div class="footer-links"><a href="about.html">Giới Thiệu</a><a href="category.html">Tất Cả Bài Viết</a><a href="#">Tuyển Dụng</a></div>
+            </div>
+            <div class="footer-col">
+                <h5>Pháp Lý</h5>
+                <div class="footer-links"><a href="#">Chính Sách Bảo Mật</a><a href="#">Điều Khoản Dịch Vụ</a></div>
+            </div>
+            <div class="footer-col">
+                <h5>Kết Nối</h5>
+                <div class="footer-links"><a href="#">Twitter</a><a href="#">LinkedIn</a><a href="contact.html">Liên Hệ Tòa Soạn</a></div>
+            </div>
+        </div>
+        <div class="footer-bottom"><p>© 2026 The Newsroom Prime. Kỷ Nguyên Báo Chí Nguyên Bản.</p></div>
+    </footer>
+
+    <script src="../js/data/articles.js"></script>
+    <script src="../js/data/auth.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const root = document.getElementById("profile-root");
+        const user = Auth.getCurrentUser();
+
+        if (!user) {
+            root.innerHTML = `<div class="not-logged-in"><span class="material-symbols-outlined" style="font-size:4rem; color:var(--outline); margin-bottom:var(--sp-4);">lock</span><h2>Vui Lòng Đăng Nhập</h2><p>Bạn cần đăng nhập để xem hồ sơ cá nhân và quản lý tài khoản.</p><a href="auth.html" class="btn btn-primary">Đăng Nhập / Đăng Ký</a></div>`;
+            return;
+        }
+
+        const bookmarks = Auth.getBookmarks();
+        const history = Auth.getHistory();
+        const prefs = Auth.getPrefs();
+
+        root.innerHTML = `
+            <div class="profile-hero reveal">
+                <div class="inner">
+                    <img src="${user.avatar}" alt="${user.firstName}" class="avatar-lg">
+                    <h1>${user.firstName} ${user.lastName}</h1>
+                    <div class="email">${user.email}</div>
+                    <div class="role">${user.role}</div>
+                </div>
+            </div>
+            <div class="profile-grid">
+                <nav class="profile-nav reveal-left">
+                    <a href="profile.html" class="active"><span class="material-symbols-outlined">person</span> Tài Khoản</a>
+                    <a href="bookmarks.html"><span class="material-symbols-outlined">bookmarks</span> Bài Viết Đã Lưu</a>
+                    <a href="history.html"><span class="material-symbols-outlined">history</span> Lịch Sử Đọc</a>
+                    <a href="#" onclick="event.preventDefault(); Auth.logout(); Toast.show('Đã đăng xuất!','success'); setTimeout(()=>location.href='../index.html',800);"><span class="material-symbols-outlined">logout</span> Đăng Xuất</a>
+                </nav>
+                <div class="reveal-right">
+                    <div class="profile-section" style="margin-bottom:var(--sp-8);">
+                        <h2>Chủ Đề Yêu Thích</h2>
+                        <p>Chọn các chủ đề bạn quan tâm để cá nhân hóa bản tin.</p>
+                        <div class="pref-chips" id="pref-chips"></div>
+                        <button class="btn btn-primary" onclick="savePrefs()">Lưu Thay Đổi</button>
+                    </div>
+                    <div class="profile-section">
+                        <h2>Thông Số Hoạt Động</h2>
+                        <p>Tóm tắt hoạt động của bạn trên nền tảng.</p>
+                        <div class="stats-cards">
+                            <div class="stat-card"><div class="num">${bookmarks.length}</div><div class="lbl">Đã Lưu</div></div>
+                            <div class="stat-card"><div class="num">${history.length}</div><div class="lbl">Đã Đọc</div></div>
+                            <div class="stat-card"><div class="num">${Object.keys(Categories).length}</div><div class="lbl">Danh Mục</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+
+        // Preference chips
+        const chipsEl = document.getElementById('pref-chips');
+        Object.entries(Categories).forEach(([key, cat]) => {
+            const chip = document.createElement('button');
+            chip.className = 'pref-chip' + (prefs.categories.includes(key) ? ' active' : '');
+            chip.textContent = cat.label;
+            chip.addEventListener('click', () => chip.classList.toggle('active'));
+            chipsEl.appendChild(chip);
+        });
+
+        initScrollAnimations();
+    });
+
+    function savePrefs() {
+        const selected = [...document.querySelectorAll('.pref-chip.active')].map((c, i) => Object.keys(Categories)[i]).filter(Boolean);
+        Auth.savePrefs({ categories: selected, newsletter: true });
+        Toast.show('Đã lưu tùy chọn!', 'success');
+    }
+    </script>
+</body>
+</html>

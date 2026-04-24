@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Tiết Bài Viết - The Newsroom Prime</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .article-container {
+            background: var(--surface-container-lowest);
+            padding: var(--sp-8);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-tonal);
+        }
+
+        @media(min-width:768px) {
+            .article-container {
+                padding: var(--sp-12);
+            }
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: var(--sp-4);
+            font-family: var(--font-label);
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--on-surface-variant);
+            margin-bottom: var(--sp-6);
+            flex-wrap: wrap;
+        }
+
+        .article-meta .cat {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        .article-headline {
+            font-family: var(--font-headline);
+            font-size: var(--text-5xl);
+            font-weight: 400;
+            line-height: 1.1;
+            color: var(--primary);
+            margin-bottom: var(--sp-6);
+        }
+
+        @media(min-width:768px) {
+            .article-headline {
+                font-size: var(--text-6xl);
+            }
+        }
+
+        .article-sub {
+            font-family: var(--font-body);
+            font-size: var(--text-xl);
+            color: var(--on-surface-variant);
+            line-height: 1.6;
+            margin-bottom: var(--sp-10);
+        }
+
+        .author-box {
+            display: flex;
+            align-items: center;
+            gap: var(--sp-4);
+            padding: var(--sp-6);
+            background: var(--surface-container-low);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--sp-12);
+        }
+
+        .author-box img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .author-box .name {
+            font-family: var(--font-label);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--primary);
+        }
+
+        .author-box .role {
+            font-family: var(--font-body);
+            font-size: var(--text-sm);
+            color: var(--on-surface-variant);
+        }
+
+        .article-figure {
+            margin-bottom: var(--sp-12);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+        }
+
+        .article-figure figcaption {
+            margin-top: var(--sp-4);
+            font-family: var(--font-label);
+            font-size: var(--text-xs);
+            color: var(--on-surface-variant);
+            text-align: right;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .prose {
+            font-family: var(--font-body);
+            font-size: var(--text-lg);
+            line-height: 1.85;
+            color: var(--on-surface);
+        }
+
+        .prose p {
+            margin-bottom: var(--sp-6);
+        }
+
+        .prose h2 {
+            font-family: var(--font-headline);
+            font-size: var(--text-3xl);
+            color: var(--primary);
+            margin-top: var(--sp-12);
+            margin-bottom: var(--sp-6);
+        }
+
+        .prose blockquote {
+            border-left: 4px solid var(--secondary);
+            padding: var(--sp-4) var(--sp-6);
+            margin: var(--sp-10) 0;
+            background: var(--surface-container-low);
+            border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+            font-family: var(--font-headline);
+            font-style: italic;
+            font-size: var(--text-2xl);
+            color: var(--primary);
+            line-height: 1.4;
+        }
+
+        /* Social Bar */
+        .social-bar {
+            display: flex;
+            gap: var(--sp-3);
+            margin-bottom: var(--sp-8);
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--sp-2);
+            padding: var(--sp-2) var(--sp-4);
+            border-radius: var(--radius-pill);
+            font-family: var(--font-label);
+            font-size: var(--text-xs);
+            transition: all var(--t-fast);
+            cursor: pointer;
+            border: none;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .share-facebook {
+            background: #1877f2;
+            color: #fff;
+        }
+
+        .share-twitter {
+            background: #1da1f2;
+            color: #fff;
+        }
+
+        .share-linkedin {
+            background: #0a66c2;
+            color: #fff;
+        }
+
+        .share-copy {
+            background: var(--surface-container-high);
+            color: var(--on-surface);
+        }
+
+        .bookmark-btn {
+            margin-left: auto;
+            background: none;
+            border: 1px solid var(--outline-variant);
+            color: var(--on-surface);
+            border-radius: var(--radius-pill);
+            padding: var(--sp-2) var(--sp-4);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--sp-2);
+            font-family: var(--font-label);
+            font-size: var(--text-xs);
+            cursor: pointer;
+            transition: all var(--t-fast);
+        }
+
+        .bookmark-btn.bookmarked {
+            background: var(--primary);
+            color: var(--on-primary);
+            border-color: var(--primary);
+        }
+
+        /* AI Summary */
+        .ai-summary {
+            background: var(--surface-container-low);
+            padding: var(--sp-6);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--sp-8);
+            border-left: 4px solid var(--secondary);
+        }
+
+        .ai-summary h3 {
+            font-family: var(--font-label);
+            font-size: var(--text-sm);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: var(--sp-2);
+            margin-bottom: var(--sp-3);
+        }
+
+        /* Progress */
+        #progress-bar {
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            height: 3px;
+            background: var(--secondary);
+            z-index: 999;
+            width: 0;
+            transition: width 0.1s;
+        }
+
+        /* Discourse */
+        .discourse {
+            margin-top: var(--sp-20);
+            border-top: 1px solid var(--border-light);
+            padding-top: var(--sp-12);
+        }
+
+        .discourse-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--sp-8);
+        }
+
+        .discourse-header h3 {
+            font-family: var(--font-headline);
+            font-size: var(--text-3xl);
+            color: var(--primary);
+            margin: 0;
+        }
+
+        .discourse-header span {
+            font-family: var(--font-label);
+            font-size: var(--text-sm);
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 600;
+        }
+
+        .comment-box {
+            background: var(--surface-container-low);
+            padding: var(--sp-6);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--sp-10);
+        }
+
+        .comment-box textarea {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--border-light);
+            resize: none;
+            font-family: var(--font-body);
+            color: var(--on-surface);
+            margin-bottom: var(--sp-4);
+            padding: var(--sp-2) 0;
+        }
+
+        .comment-box textarea:focus {
+            border-bottom-color: var(--primary);
+            outline: none;
+        }
+
+        .comment-item {
+            display: flex;
+            gap: var(--sp-4);
+            margin-bottom: var(--sp-8);
+            animation: slideUp 0.4s ease;
+        }
+
+        .comment-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-container);
+            color: var(--on-primary-container);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-label);
+            font-weight: 700;
+            font-size: var(--text-sm);
+            flex-shrink: 0;
+        }
+
+        .comment-name {
+            font-family: var(--font-label);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--primary);
+        }
+
+        .comment-date {
+            font-family: var(--font-label);
+            font-size: var(--text-xs);
+            color: var(--on-surface-variant);
+        }
+
+        .comment-text {
+            font-family: var(--font-body);
+            font-size: var(--text-sm);
+            color: var(--on-surface);
+            line-height: 1.6;
+            margin-top: var(--sp-1);
+        }
+
+        /* Related */
+        .related-card {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            margin-bottom: var(--sp-8);
+        }
+
+        .related-card img {
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--sp-3);
+            transition: transform var(--t-slow);
+        }
+
+        .related-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .related-card .cat {
+            font-family: var(--font-label);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--secondary);
+            margin-bottom: var(--sp-1);
+        }
+
+        .related-card h5 {
+            font-family: var(--font-headline);
+            font-size: var(--text-lg);
+            color: var(--primary);
+            transition: color var(--t-fast);
+            margin: 0;
+        }
+
+        .related-card:hover h5 {
+            color: var(--secondary);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header" role="banner">
+        <div class="header-inner">
+            <div class="logo"><a href="../index.html">The Newsroom Prime</a></div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="../index.html">Trang Chủ</a></li>
+                    <li><a href="category.html">Khám Phá</a></li>
+                    <li><a href="about.html">Tòa Soạn</a></li>
+                    <li><a href="contact.html">Liên Hệ</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="icon-btn" id="btn-search" aria-label="Tìm kiếm"><span
+                        class="material-symbols-outlined">search</span></button>
+                <button class="icon-btn" id="btn-theme-toggle" aria-label="Chuyển giao diện"><span
+                        class="material-symbols-outlined">dark_mode</span></button>
+                <a href="auth.html" class="btn btn-primary">Đăng Nhập / Đăng Ký</a>
+            </div>
+        </div>
+    </header>
+
+    <div id="progress-bar"></div>
+
+    <main role="main">
+        <div class="container-narrow">
+            <div class="grid-12">
+                <!-- Article Content -->
+                <article class="article-container fade-in" style="grid-column: span 9;" id="article-main">
+                    <!-- Rendered by JS -->
+                    <div class="skeleton skeleton-title"></div>
+                    <div class="skeleton skeleton-text"></div>
+                    <div class="skeleton skeleton-image"></div>
+                </article>
+                <!-- Sidebar -->
+                <aside style="grid-column: span 3;" id="article-sidebar">
+                    <div class="sticky-sidebar reveal-sidebar-item">
+                        <div class="reveal-sidebar-item" style="transition-delay:0.1s;">
+                            <h4
+                                style="font-family:var(--font-label); font-size:var(--text-xs); text-transform:uppercase; letter-spacing:0.15em; color:var(--secondary); border-bottom:1px solid var(--border-light); padding-bottom:var(--sp-2); margin-bottom:var(--sp-4);">
+                                Gợi Ý Đọc Thêm</h4>
+                            <div id="related-articles"></div>
+                        </div>
+
+                        <!-- High-Density Trending -->
+                        <div class="reveal-sidebar-item"
+                            style="margin-top:var(--sp-4); padding:var(--sp-6); background:var(--surface-container-high); border-radius:var(--radius-lg); border-left:3px solid var(--secondary); transition-delay:0.2s;">
+                            <h5
+                                style="font-family:var(--font-headline); font-size:var(--text-lg); color:var(--primary); margin-bottom:var(--sp-4);">
+                                Tin Nóng Trong Tuần</h5>
+                            <div id="sidebar-trending-list"></div>
+                        </div>
+
+                        <!-- Social Proof Widget -->
+                        <div class="reveal-sidebar-item"
+                            style="margin-top:var(--sp-4); text-align:center; padding:var(--sp-6); border:1px dashed var(--outline-variant); border-radius:var(--radius-lg); transition-delay:0.3s;">
+                            <div
+                                style="font-family:var(--font-label); font-size:24px; color:var(--secondary); font-weight:700;">
+                                45K+</div>
+                            <div
+                                style="font-size:10px; color:var(--outline); text-transform:uppercase; letter-spacing:0.1em;">
+                                Độc giả đang theo dõi</div>
+                        </div>
+
+                        <!-- Newsletter Sticky -->
+                        <div class="reveal-sidebar-item"
+                            style="margin-top:var(--sp-4); padding:var(--sp-8); background:var(--primary-container); border-radius:var(--radius-lg); color:var(--on-primary-container); position:relative; overflow:hidden; border:1px solid var(--border-light); transition-delay:0.4s;">
+                            <div style="position:relative; z-index:1;">
+                                <h5
+                                    style="font-family:var(--font-label); font-size:var(--text-xs); text-transform:uppercase; color:var(--secondary); margin-bottom:var(--sp-2);">
+                                    Tòa Soạn Gửi Bạn</h5>
+                                <h6
+                                    style="color:var(--on-primary-container); font-size:16px; margin-bottom:var(--sp-3);">
+                                    Đừng bỏ lỡ các phân tích chuyên sâu</h6>
+                                <button class="btn"
+                                    style="width:100%; background:var(--primary); color:var(--on-primary); font-size:12px; font-weight:700;">ĐĂNG
+                                    KÝ BẢN TIN</button>
+                            </div>
+                        </div>
+
+                        <div class="sidebar-fill-decorative">
+                            <p>Editorial Depth • Newsroom Prime • 2026 • Verified Premium</p>
+                            <p style="margin-top:20px;">Scroll for more insights ↓</p>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo"><a href="../index.html">The Newsroom Prime</a></div>
+                <p>Góc Nhìn Độc Lập Giữa Dòng Chảy Số.</p>
+            </div>
+            <div class="footer-col">
+                <h5>Tổ Chức</h5>
+                <div class="footer-links"><a href="about.html">Giới Thiệu</a><a href="category.html">Tất Cả Bài
+                        Viết</a><a href="#">Tuyển Dụng</a></div>
+            </div>
+            <div class="footer-col">
+                <h5>Pháp Lý</h5>
+                <div class="footer-links"><a href="#">Chính Sách Bảo Mật</a><a href="#">Điều Khoản Dịch Vụ</a></div>
+            </div>
+            <div class="footer-col">
+                <h5>Kết Nối</h5>
+                <div class="footer-links"><a href="#">Twitter</a><a href="#">LinkedIn</a><a href="contact.html">Liên Hệ
+                        Tòa Soạn</a></div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 The Newsroom Prime. Kỷ Nguyên Báo Chí Nguyên Bản.</p>
+        </div>
+    </footer>
+
+    <!-- Search Overlay -->
+    <div id="search-overlay"
+        style="display:none; position:fixed; inset:0; background:rgba(248,249,250,0.92); backdrop-filter:blur(20px); z-index:2000; align-items:flex-start; justify-content:center; padding-top:15vh;">
+        <div style="width:100%; max-width:800px; padding:0 1rem;">
+            <div
+                style="display:flex; align-items:center; gap:1rem; border-bottom:2px solid var(--primary); padding-bottom:0.5rem;">
+                <span class="material-symbols-outlined"
+                    style="font-size:2rem; color:var(--outline);">search</span><input type="text" id="live-search-input"
+                    placeholder="Tìm kiếm..."
+                    style="flex:1; font-size:1.5rem; font-family:var(--font-body); background:transparent; color:var(--primary); border:none; outline:none;"><button
+                    id="close-search" class="icon-btn"><span class="material-symbols-outlined">close</span></button>
+            </div>
+            <div id="search-suggestions" style="margin-top:1rem;"></div>
+        </div>
+    </div>
+
+    <script src="../js/data/articles.js"></script>
+    <script src="../js/data/auth.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/components/search.js"></script>
+    <script src="../js/components/comments.js"></script>
+    <script src="../js/components/ai-summary.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const params = new URLSearchParams(window.location.search);
+            const id = parseInt(params.get("id")) || 1;
+            const article = getArticleById(id);
+            if (!article) { document.getElementById("article-main").innerHTML = '<h2>Bài viết không tồn tại.</h2>'; return; }
+
+            // Track reading history
+            if (typeof Auth !== 'undefined') Auth.addToHistory(id);
+
+            // Set page title
+            document.title = article.title + " - The Newsroom Prime";
+
+            // Check bookmark
+            const isBookmarked = typeof Auth !== 'undefined' && Auth.isBookmarked(id);
+
+            // Render article
+            document.getElementById("article-main").innerHTML = `
+            <div class="article-meta">
+                <span class="cat">${article.categoryLabel}</span><span>•</span>
+                <span>${formatDate(article.date)}</span><span>•</span>
+                <span style="display:flex;align-items:center;gap:4px;"><span class="material-symbols-outlined" style="font-size:16px;">schedule</span>${article.readTime} phút đọc</span><span>•</span>
+                <span style="display:flex;align-items:center;gap:4px;"><span class="material-symbols-outlined" style="font-size:16px;">visibility</span>${formatViews(article.views)}</span>
+            </div>
+            <h1 class="article-headline">${article.title}</h1>
+            <p class="article-sub">${article.excerpt}</p>
+            <div class="author-box">
+                <img src="${article.authorAvatar}" alt="${article.author}">
+                <div><div class="name">${article.author}</div><div class="role">${article.authorRole}</div></div>
+            </div>
+
+            <!-- Social Sharing -->
+            <div class="social-bar">
+                <button class="share-btn share-facebook" onclick="shareArticle('facebook')"><span class="material-symbols-outlined" style="font-size:16px;">share</span> Facebook</button>
+                <button class="share-btn share-twitter" onclick="shareArticle('twitter')"><span class="material-symbols-outlined" style="font-size:16px;">share</span> Twitter</button>
+                <button class="share-btn share-linkedin" onclick="shareArticle('linkedin')"><span class="material-symbols-outlined" style="font-size:16px;">share</span> LinkedIn</button>
+                <button class="share-btn share-copy" onclick="shareArticle('copy')"><span class="material-symbols-outlined" style="font-size:16px;">content_copy</span> Sao chép</button>
+                <button class="bookmark-btn ${isBookmarked ? 'bookmarked' : ''}" id="bookmark-toggle" onclick="toggleBookmark(${id})">
+                    <span class="material-symbols-outlined" style="font-size:18px; font-variation-settings:'FILL' ${isBookmarked ? 1 : 0};">${isBookmarked ? 'bookmark' : 'bookmark_border'}</span>
+                    ${isBookmarked ? 'Đã Lưu' : 'Lưu Bài'}
+                </button>
+            </div>
+
+            <figure class="article-figure">
+                <img src="${article.image}" alt="${article.title}">
+                <figcaption>Hình ảnh minh họa. Nguồn: The Newsroom Prime.</figcaption>
+            </figure>
+
+            <!-- AI Summary -->
+            <div class="ai-summary" id="ai-summary-container">
+                <h3><span class="material-symbols-outlined" style="font-size:20px;">smart_toy</span> AI Tóm Tắt</h3>
+                <div id="ai-summary-text"><p style="margin:0; font-size:var(--text-sm); color:var(--on-surface-variant);">Nhấn để AI trích xuất luận điểm chính.</p></div>
+                <button id="btn-generate-summary" class="btn btn-surface" style="margin-top:var(--sp-4);"><span class="material-symbols-outlined" style="font-size:18px;">auto_awesome</span> Tạo Tóm Tắt</button>
+            </div>
+
+            <!-- Body -->
+            <div class="prose" id="article-body">${article.body}</div>
+
+            <!-- Tags -->
+            <div style="margin-top:var(--sp-12); display:flex; gap:var(--sp-2); flex-wrap:wrap;">
+                <span style="font-family:var(--font-label); font-size:var(--text-xs); text-transform:uppercase; letter-spacing:0.1em; color:var(--outline); margin-right:var(--sp-2);">Tags:</span>
+                <a href="category.html" style="padding:2px 12px; background:var(--surface-container-high); border-radius:var(--radius-pill); font-family:var(--font-label); font-size:var(--text-xs); color:var(--on-surface); text-decoration:none; transition:all var(--t-fast);">${article.categoryLabel}</a>
+                <a href="category.html" style="padding:2px 12px; background:var(--surface-container-high); border-radius:var(--radius-pill); font-family:var(--font-label); font-size:var(--text-xs); color:var(--on-surface); text-decoration:none;">Phân Tích</a>
+            </div>
+
+            <!-- Comments -->
+            <section class="discourse" id="discourse">
+                <div class="discourse-header"><h3>Thảo Luận</h3><span id="comment-count-label">0 Phản Hồi</span></div>
+                <div class="comment-box">
+                    <form id="comment-form"><textarea id="comment-input" rows="3" placeholder="Đóng góp ý kiến của bạn..." required></textarea><div style="display:flex; justify-content:flex-end;"><button type="submit" class="btn btn-surface">Gửi Phản Hồi</button></div></form>
+                </div>
+                <div id="comment-list"></div>
+            </section>
+        `;
+
+            // Related articles
+            const related = getRelatedArticles(id, 3);
+            document.getElementById("related-articles").innerHTML = related.length ? related.map(r => `
+            <a href="article.html?id=${r.id}" class="related-card" style="display:flex; gap:12px; margin-bottom:16px; border-bottom:1px solid var(--surface-container-low); padding-bottom:12px;">
+                <div style="width:80px; height:60px; border-radius:4px; overflow:hidden; flex-shrink:0;"><img src="${r.image}" alt=""></div>
+                <div>
+                    <div style="font-family:var(--font-label); font-size:9px; text-transform:uppercase; color:var(--secondary);">${r.categoryLabel}</div>
+                    <h5 style="font-size:13px; line-height:1.4; margin:2px 0;">${r.title}</h5>
+                </div>
+            </a>`).join("") : '<p style="color:var(--on-surface-variant); font-size:var(--text-sm);">Không có bài viết liên quan.</p>';
+
+            // Sidebar Trending
+            const trending = [...ArticlesDB].sort((a, b) => b.views - a.views).slice(0, 3);
+            document.getElementById("sidebar-trending-list").innerHTML = trending.map((a, i) => `
+            <a href="article.html?id=${a.id}" style="display:block; text-decoration:none; margin-bottom:12px;">
+                <h6 style="color:var(--primary); font-size:14px; margin-bottom:2px;">${a.title}</h6>
+                <div style="font-size:10px; color:var(--on-surface-variant);">${formatViews(a.views)} lượt đọc</div>
+            </a>
+        `).join("");
+
+            // Progress bar
+            window.addEventListener('scroll', () => {
+                const s = document.documentElement.scrollTop;
+                const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                document.getElementById("progress-bar").style.width = (s / h * 100) + "%";
+            });
+
+            // Re-init scroll animations
+            initScrollAnimations();
+        });
+
+        function toggleBookmark(id) {
+            if (typeof Auth === 'undefined') return;
+            const added = Auth.toggleBookmark(id);
+            const btn = document.getElementById("bookmark-toggle");
+            const icon = btn.querySelector(".material-symbols-outlined");
+            btn.classList.toggle("bookmarked", added);
+            icon.textContent = added ? "bookmark" : "bookmark_border";
+            icon.style.fontVariationSettings = `'FILL' ${added ? 1 : 0}`;
+            btn.lastChild.textContent = added ? " Đã Lưu" : " Lưu Bài";
+            Toast.show(added ? "Đã lưu bài viết!" : "Đã bỏ lưu bài viết.", added ? "success" : "info");
+        }
+    </script>
+</body>
+
+</html>
