@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../project code"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "hoangtrungkien.github.io"
+	}
+}
